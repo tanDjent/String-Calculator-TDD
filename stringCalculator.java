@@ -1,20 +1,19 @@
 class StringCalculator{
     public int add(String numbers){
-        int a,b,i;
+        int sum,i,beginning;
         if(numbers.length()==0)return 0;
         i=0;
-        
+        sum=0;
+        beginning=0;
         while(i<numbers.length()){
-            if(numbers.charAt(i)==',')break;
+            if(numbers.charAt(i)==','){
+                sum+=Integer.parseInt(numbers.substring(beginning,i));
+                beginning=i+1;
+            }
             ++i;
         }
-        
-        if(i==numbers.length()){
-          return Integer.parseInt(numbers);  
-        }
-        a=Integer.parseInt(numbers.substring(0,i));
-        b=Integer.parseInt(numbers.substring(i+1));
-        return a+b;
+        sum+=Integer.parseInt(numbers.substring(beginning,i));
+        return sum;
     }
 }
 class Main{
@@ -23,8 +22,10 @@ class Main{
         String a="";
         String b="1";
         String c="3,4";
+        String d="1,2,3,4,5,6,7,8,9";
         System.out.println(s.add(a));
         System.out.println(s.add(b));
         System.out.println(s.add(c));
+        System.out.println(s.add(d));
     }
 }
